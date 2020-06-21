@@ -1,0 +1,87 @@
+.form-container {
+    background-color: #fff;
+    padding: 10px 0;
+    position: relative;
+}
+
+.form-container textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.form-container button {
+    color: #0081ff;
+    background-color: #fff;
+    border: 0;
+    font-size: 12px;
+}
+
+.form-container form {
+    margin-top: 20px;
+}
+
+.form-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fafafa;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #363636;
+    font-size: 13px;
+}
+
+.form-header ul {
+    display: flex;
+}
+
+.form-header li {
+    padding: 8px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #e6e6e6;
+    box-sizing: border-box;
+}
+
+.form-header li:first-child {
+    width: 120px;
+    text-align: center;
+}
+
+.form-header li:nth-child(2) {
+    width: 80px;
+    text-align: center;
+}
+
+.form-header li:nth-child(3) {
+    width: 100%;
+}
+
+.form-header li.active {
+    background-color: #fff;
+    border-bottom: 0;
+}
+
+.form-header li:first-child.active {
+    border-right: 1px solid #e6e6e6;
+    border-top-left-radius: 5px;
+}
+
+.form-header li:nth-child(2).active {
+    border-left: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+}
+
+.form-style {
+    padding: 10px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.cancel-save-btn {
+    text-align: right;
+    margin-right: 10px;
+}

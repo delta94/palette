@@ -1,0 +1,15 @@
+.search {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2.5em;
+}
+
+.search input {
+    padding: 8px 12px;
+    padding-right: 8px;
+    width: 40%;
+    min-width: 300px;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

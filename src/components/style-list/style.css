@@ -1,0 +1,20 @@
+.style {
+    background-color: #fff;
+    margin-bottom: 1em;
+    padding: 25px;
+    padding-top: 45px;
+    position: relative;
+}
+
+.edit-delete-style {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.edit-delete-style button {
+    color: #0081ff;
+    background-color: #fff;
+    border: 0;
+    font-size: 12px;
+}

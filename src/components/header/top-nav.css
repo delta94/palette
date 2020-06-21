@@ -1,0 +1,102 @@
+.top-nav-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    border-bottom: 1px solid #e6e6e6;
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.01);
+    background-color: #fafafa;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+}
+
+.logo {
+    color: #363636;
+    font-family: 'Merriweather', serif;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.logo i {
+    margin-right: 3px;
+}
+
+.icons i {
+    color: #363636;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.icons i:hover {
+    color: #0081ff;
+}
+
+.rainbow:hover {
+    -webkit-animation:rainbow 1s infinite;
+    -ms-animation:rainbow 1s infinite;
+    -o-animation:rainbow 1s infinite;
+    animation:rainbow 1s infinite;
+}
+
+@-webkit-keyframes rainbow {
+    0% {color: #ff0000;}
+    10% {color: #ff8000;}
+    20% {color: #ffff00;}
+    30% {color: #80ff00;}
+    40% {color: #00ff00;}
+    50% {color: #00ff80;}
+    60% {color: #00ffff;}
+    70% {color: #0080ff;}
+    80% {color: #0000ff;}
+    90% {color: #8000ff;}
+    100% {color: #ff0080;}
+}
+
+@-ms-keyframes rainbow {
+    0% {color: #ff0000;}
+    10% {color: #ff8000;}
+    20% {color: #ffff00;}
+    30% {color: #80ff00;}
+    40% {color: #00ff00;}
+    50% {color: #00ff80;}
+    60% {color: #00ffff;}
+    70% {color: #0080ff;}
+    80% {color: #0000ff;}
+    90% {color: #8000ff;}
+    100% {color: #ff0080;}
+}
+
+@-o-keyframes rainbow {
+    0% {color: #ff0000;}
+    10% {color: #ff8000;}
+    20% {color: #ffff00;}
+    30% {color: #80ff00;}
+    40% {color: #00ff00;}
+    50% {color: #00ff80;}
+    60% {color: #00ffff;}
+    70% {color: #0080ff;}
+    80% {color: #0000ff;}
+    90% {color: #8000ff;}
+    100% {color: #ff0080;}
+}
+
+@keyframes rainbow {
+    0% {color: #ff0000;}
+    10% {color: #ff8000;}
+    20% {color: #ffff00;}
+    30% {color: #80ff00;}
+    40% {color: #00ff00;}
+    50% {color: #00ff80;}
+    60% {color: #00ffff;}
+    70% {color: #0080ff;}
+    80% {color: #0000ff;}
+    90% {color: #8000ff;}
+    100% {color: #ff0080;}
+}
