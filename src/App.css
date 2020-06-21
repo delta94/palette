@@ -8,9 +8,10 @@ button {
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-weight: 600;
 }
 
-input, textarea {
+input, textarea, select {
     outline: none;
     border: 0;
 }
@@ -68,5 +69,6 @@ textarea {
     padding-bottom: 2em;
     color: #aaa;
     font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
     font-style: italic;
 }

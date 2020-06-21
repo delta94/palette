@@ -100,7 +100,7 @@ class App extends React.Component {
             handleSubmit={this.handleSubmit} />
         </div>
         <div className="styles">
-          <h1>Styles</h1>
+          <h1>Fonts</h1>
           {
             !creating && styles.length < 1
               ? <div className="empty-style">No styles to show</div>

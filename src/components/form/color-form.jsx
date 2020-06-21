@@ -32,6 +32,7 @@ export default class ColorForm extends React.Component {
                         <input
                             ref={this.textarea}
                             type="text"
+                            spellCheck="false"
                             placeholder="000000"
                             maxLength="6"
                             onChange={e => this.setState({ color: e.target.value })}

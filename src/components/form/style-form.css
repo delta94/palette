@@ -1,6 +1,6 @@
 .form-container {
     background-color: #fff;
-    padding: 10px 0;
+    padding: 5px 0 10px 0;
     position: relative;
 }
 
@@ -8,6 +8,8 @@
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
+    resize: none;
+    overflow: hidden;
 }
 
 .form-container button {
@@ -30,6 +32,7 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #363636;
@@ -77,8 +80,56 @@
 }
 
 .form-style {
-    padding: 10px;
+    padding: 8px 10px;
     border-bottom: 1px solid #e6e6e6;
+    font-family: 'Open Sans', sans-serif;
+    color: #363636;
+}
+
+.form-style select, .form-style input {
+    border: 1px solid #eee;
+    padding: 2px;
+    margin-right: 10px;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-style input {
+    width: 45px;
+    padding: 3px;
+    margin-top: 5px;
+}
+
+.color-input-form {
+    display: inline-block;
+    border: 1px solid #eee;
+    padding: 0 3px;
+    margin-top: 5px;
+}
+
+input.color-input {
+    width: 45px;
+    border: 0;
+    padding-left: 1px;
+    margin: 0;
+}
+
+.form-style i {
+    font-size: 14px;
+    margin: 0 2px;
+    color: #363636;
+}
+
+.form-style i.fas.fa-underline:hover,
+.form-style i.fas.fa-italic:hover,
+.form-style i.fas.fa-strikethrough:hover {
+    color: #0081ff;
+    cursor: pointer;
+
+}
+
+.form-style i.fas.fa-strikethrough {
+    margin-right: 10px;
 }
 
 .cancel-save-btn {
