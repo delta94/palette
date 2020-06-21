@@ -38,7 +38,7 @@ export default class StyleForm extends React.Component {
                         </li>
                         <li className={css ? "active" : ""}
                             onClick={() => this.setState({ css: true })}>
-                            CSS
+                            Code
                         </li>
                         <li></li>
                     </ul>

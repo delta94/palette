@@ -1,12 +1,15 @@
 .color-list {
     margin: 2em 0 0 0;
     background-color: #fff;
-    padding: 20px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .add-color {
     position: relative;
-    display: inline-block;
 }
 
 .add-color i.fas.fa-plus {
@@ -21,6 +24,7 @@
     cursor: pointer;
     transition: all 250ms ease-in-out;
     box-sizing: border-box;
+    margin: 10px;
 }
 
 .add-color i.fas.fa-plus:hover {
@@ -29,20 +33,11 @@
     transition: all 250ms ease-in-out;
 }
 
-.colored {
-    border-radius: 50%;
-    width: 74px;
-    height: 74px;
-    cursor: pointer;
-    background-color: #000;
-    transition: background-color 250ms linear;
-}
-
 .add-color-form {
     background-color: #fff;
     position: absolute;
-    bottom: -60px;
-    left: -21px;
+    bottom: -50px;
+    left: -12px;
     padding: 10px;
     color: #363636;
     width: 95px;

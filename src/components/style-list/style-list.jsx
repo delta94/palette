@@ -7,7 +7,7 @@ export const StyleList = props => (
         {
             props.styles.map(({ style }, i) =>
                 <Style
-                    key={`sfdsfsd-${i}`}
+                    key={`style-${i}`}
                     style={style}
                     remove={props.remove}
                 />

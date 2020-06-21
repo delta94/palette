@@ -1,6 +1,7 @@
 import React from 'react';
 import './color-list.css';
 import ColorForm from '../form/color-form';
+import Color from './color';
 
 export default class ColorList extends React.Component {
     constructor(props) {
@@ -16,9 +17,18 @@ export default class ColorList extends React.Component {
     }
 
     render() {
+        const { colors } = this.props;
 
         return (
             <div className="color-list">
+                {
+                    colors.map(({ color }, i) =>
+                        <Color
+                            key={`color-${i}`}
+                            color={color}
+                        />
+                    )
+                }
                 {
                     this.state.adding
                         ? 

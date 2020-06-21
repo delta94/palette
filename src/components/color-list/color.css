@@ -1,0 +1,9 @@
+.colored {
+    border-radius: 50%;
+    width: 74px;
+    height: 74px;
+    cursor: pointer;
+    background-color: #000;
+    transition: background-color 250ms linear;
+    margin: 10px;
+}
