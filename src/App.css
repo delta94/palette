@@ -34,8 +34,12 @@ textarea {
   font-family: 'Merriweather', serif;
 }
 
-.colors, .styles {
-    padding-bottom: 2.5em;
+.colors {
+    padding-bottom: 3em;
+}
+
+.styles {
+    padding-bottom: 1.5em;
 }
 
 .add-style-btn {
