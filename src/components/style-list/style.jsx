@@ -26,10 +26,10 @@ export default class Style extends React.Component {
                 <div className="style">
                     <div className="edit-delete-style">
                         <button onClick={() => this.setState({ editing: true })}>
-                            edit
+                            Edit
                         </button>
                         <button onClick={() => remove(style.id)}>
-                            delete
+                            Delete
                         </button>
                     </div>
                     {style.text}

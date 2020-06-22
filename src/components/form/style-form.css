@@ -7,7 +7,7 @@
 .form-container textarea {
     width: 100%;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 15px;
     resize: none;
     overflow: hidden;
 }
@@ -44,20 +44,23 @@
 }
 
 .form-header li {
-    padding: 8px 10px;
-    cursor: pointer;
+    padding: 10px;
     border-bottom: 1px solid #e6e6e6;
     box-sizing: border-box;
 }
 
 .form-header li:first-child {
-    width: 120px;
+    width: 140px;
     text-align: center;
 }
 
 .form-header li:nth-child(2) {
-    width: 80px;
+    width: 100px;
     text-align: center;
+}
+
+.form-header li:first-child, .form-header li:nth-child(2) {
+    cursor: pointer;
 }
 
 .form-header li:nth-child(3) {
@@ -80,10 +83,17 @@
 }
 
 .form-style {
-    padding: 8px 10px;
+    padding: 8px 15px;
     border-bottom: 1px solid #e6e6e6;
     font-family: 'Open Sans', sans-serif;
     color: #363636;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-style div {
+    margin-top: 10px;
+    position: relative;
 }
 
 .form-style select, .form-style input {
@@ -95,20 +105,25 @@
 }
 
 .form-style input {
-    width: 45px;
+    width: 35px;
     padding: 3px;
-    margin-top: 5px;
+}
+
+.form-style select {
+    width: 50px;
+}
+
+select.font-select {
+    width: 115px;
 }
 
 .color-input-form {
     display: inline-block;
     border: 1px solid #eee;
     padding: 0 3px;
-    margin-top: 5px;
 }
 
 input.color-input {
-    width: 45px;
     border: 0;
     padding-left: 1px;
     margin: 0;
@@ -116,23 +131,38 @@ input.color-input {
 
 .form-style i {
     font-size: 14px;
-    margin: 0 2px;
+    margin-right: 5px;
     color: #363636;
 }
 
 .form-style i.fas.fa-underline:hover,
-.form-style i.fas.fa-italic:hover,
-.form-style i.fas.fa-strikethrough:hover {
+.form-style i.fas.fa-italic:hover {
     color: #0081ff;
     cursor: pointer;
 
 }
 
-.form-style i.fas.fa-strikethrough {
+.form-style i.fas.fa-underline {
     margin-right: 10px;
+}
+
+span.material-icons {
+    font-size: 20px;
+    line-height: 14px;
+    position: absolute;
+    top: 6px;
+}
+
+input.size-input {
+    margin-left: 24px;
+}
+
+.font-style-icon {
+    position: absolute;
+    top: 5px;
 }
 
 .cancel-save-btn {
     text-align: right;
-    margin-right: 10px;
+    margin-right: 15px;
 }
