@@ -1,15 +1,15 @@
 .style {
     background-color: #fff;
     margin-bottom: 1em;
-    padding: 25px;
-    padding-top: 45px;
+    padding: 20px 15px;
+    padding-top: 40px;
     position: relative;
 }
 
 .edit-delete-style {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 15px;
+    top: 12px;
 }
 
 .edit-delete-style button {
