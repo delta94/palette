@@ -41,9 +41,22 @@ class App extends React.Component {
         }
       }
 
-      value = type === "styles" 
-        ? { id, text: input } 
-        : { id, value: input };
+    if (type === "styles") {
+      const { text, font, size, weight, style, decoration, color } = input;
+
+      value = {
+        id,
+        text: text,
+        font: font,
+        size: size,
+        weight: weight,
+        style: style,
+        decoration: decoration,
+        color: color
+      };
+    } else {
+      value = { id, value: input };
+    }
 
       if (styleId !== null) {
         for (let i = 0; i < key.length; i++) {
@@ -99,45 +112,47 @@ class App extends React.Component {
     });
 
     return (
-      <div className="main-container">
+      <>
         <TopNav />
         <SearchBar handleChange={this.handleChange} />
-        <div className="colors">
-          <h1>Colors</h1>
-          <ColorList 
-            colors={filteredColors}
-            handleSubmit={this.handleSubmit} />
+        <div className="main-container">
+          <div className="colors">
+            <h1>Colors</h1>
+            <ColorList 
+              colors={filteredColors}
+              handleSubmit={this.handleSubmit} />
+          </div>
+          <div className="styles">
+            <h1>Fonts</h1>
+            {
+              !creating && styles.length < 1
+                ? <div className="empty-style">No styles to show</div>
+                : null
+            }
+            {
+              creating
+                ? 
+                  <StyleForm
+                    type="create"
+                    closeCreateForm={this.closeCreateForm}
+                    handleSubmit={this.handleSubmit}
+                  />
+                :
+                  <div className="add-style-btn">
+                    <button
+                      onClick={() => this.setState({ creating: true })}>
+                      Add
+                    </button>
+                  </div>
+            }
+            <StyleList
+              styles={filteredStyles.reverse()}
+              remove={this.delete}
+              handleSubmit={this.handleSubmit}
+            />
+          </div>
         </div>
-        <div className="styles">
-          <h1>Fonts</h1>
-          {
-            !creating && styles.length < 1
-              ? <div className="empty-style">No styles to show</div>
-              : null
-          }
-          {
-            creating
-              ? 
-                <StyleForm
-                  type="create"
-                  closeCreateForm={this.closeCreateForm}
-                  handleSubmit={this.handleSubmit}
-                />
-              :
-                <div className="add-style-btn">
-                  <button
-                    onClick={() => this.setState({ creating: true })}>
-                    Add
-                  </button>
-                </div>
-          }
-          <StyleList
-            styles={filteredStyles.reverse()}
-            remove={this.delete}
-            handleSubmit={this.handleSubmit}
-          />
-        </div>
-      </div>
+      </>
     );
   }
 }

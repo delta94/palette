@@ -40,7 +40,17 @@ export default class Style extends React.Component {
                                         Delete
                                     </button>
                                 </div>
-                                {style.text}
+                                <span
+                                    style={{
+                                        fontFamily: style.font,
+                                        fontSize: style.size,
+                                        fontWeight: style.weight,
+                                        fontStyle: style.style,
+                                        textDecoration: style.decoration,
+                                        color: "#" + style.color
+                                    }}>
+                                    {style.text}
+                                </span>
                             </div>
                 }
             </>

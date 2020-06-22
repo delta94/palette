@@ -5,17 +5,27 @@ export default class Textarea extends React.Component {
     constructor(props) {
         super(props);
 
-        const defaultText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+        let text, font, size, weight, style, decoration, color;
 
-        this.state = {
-            text: props.type === "create" ? defaultText : props.style.text,
-            font: "Open Sans",
-            size: "14px",
-            weight: "400",
-            style: "normal",
-            decoration: "none",
-            color: ""
-        };
+        if (props.type === "create") {
+            text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+            font = "Open Sans";
+            size = "14px";
+            weight = "400";
+            style = "normal";
+            decoration = "none";
+            color = "";
+        } else {
+            text = props.style.text;
+            font = props.style.font;
+            size = props.style.size;
+            weight = props.style.weight;
+            style = props.style.style;
+            decoration = props.style.decoration;
+            color = props.style.color;
+        }
+
+        this.state = { text, font, size, weight, style, decoration, color };
         
         this.textarea = React.createRef();
     }
@@ -131,7 +141,7 @@ export default class Textarea extends React.Component {
                                 <button onClick={closeCreateForm}>
                                     Cancel
                                 </button>
-                                <button onClick={() => handleSubmit("styles", text)}>
+                                <button onClick={() => handleSubmit("styles", this.state)}>
                                     Save
                                 </button>
                             </div>
@@ -140,7 +150,7 @@ export default class Textarea extends React.Component {
                                 <button onClick={closeEditForm}>
                                     Cancel
                                 </button>
-                                <button onClick={e => this.handleSubmit(e, text)}>
+                                <button onClick={e => this.handleSubmit(e, this.state)}>
                                     Save
                                 </button>
                             </div>

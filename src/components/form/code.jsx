@@ -3,6 +3,6 @@ import './code.css';
 
 export const Code = props => {
     return (
-        <h1>test</h1>
+        <h1></h1>
     )
 };
