@@ -1,0 +1,85 @@
+.form-style {
+    padding: 8px 15px;
+    border-bottom: 1px solid #e6e6e6;
+    font-family: 'Open Sans', sans-serif;
+    color: #363636;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-style div {
+    margin-top: 10px;
+    position: relative;
+}
+
+.form-style select, .form-style input {
+    border: 1px solid #eee;
+    padding: 2px;
+    margin-right: 10px;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-style input {
+    width: 35px;
+    padding: 3px;
+}
+
+.form-style select {
+    width: 50px;
+}
+
+select.font-select {
+    width: 115px;
+}
+
+.color-input-form {
+    display: inline-block;
+    border: 1px solid #eee;
+    padding: 0 3px;
+}
+
+input.color-input {
+    border: 0;
+    padding-left: 1px;
+    margin: 0;
+    width: 45px;
+}
+
+.form-style i {
+    font-size: 14px;
+    margin-right: 5px;
+    color: #363636;
+}
+
+.form-style i.fas.fa-underline:hover,
+.form-style i.fas.fa-italic:hover {
+    color: #0081ff;
+    cursor: pointer;
+
+}
+
+.form-style i.fas.fa-underline {
+    margin-right: 10px;
+}
+
+span.material-icons {
+    font-size: 20px;
+    line-height: 14px;
+    position: absolute;
+    top: 6px;
+}
+
+input.size-input {
+    margin-left: 24px;
+}
+
+.font-style-icon {
+    position: absolute;
+    top: 5px;
+}
+
+.cancel-save-btn {
+    text-align: right;
+    margin-right: 15px;
+}

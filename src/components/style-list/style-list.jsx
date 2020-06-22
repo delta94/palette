@@ -10,6 +10,7 @@ export const StyleList = props => (
                     key={`style-${i}`}
                     style={style}
                     remove={props.remove}
+                    handleSubmit={props.handleSubmit}
                 />
             )
         }

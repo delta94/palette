@@ -30,26 +30,35 @@ class App extends React.Component {
     this.setState({ searchText: e.target.value });
   }
 
-  handleSubmit = (type, input) => {
-    const key = this.state[type];
-    let id = key.length;
-    let value;
+  handleSubmit = (type, input, styleId=null) => {
+      const key = this.state[type];
+      let id = styleId !== null ? styleId : key.length;
+      let value;
 
-    for (let i = 0; i < key.length; i++) {
-      if (key[i].id !== i) id = i;
-    }
+      if (styleId === null) {
+        for (let i = 0; i < key.length; i++) {
+          if (key[i].id !== i) id = i;
+        }
+      }
 
-    value = type === "styles" 
-      ? { id, text: input } 
-      : { id, value: input };
+      value = type === "styles" 
+        ? { id, text: input } 
+        : { id, value: input };
 
-    key.push(value);
-    localStorage.setItem(type, JSON.stringify(key));
-    this.setState({ [type]: key });
-    if (type === "styles") this.handleClose();
+      if (styleId !== null) {
+        for (let i = 0; i < key.length; i++) {
+          if (key[i].id === id) key[i] = value;
+        }
+      } else { 
+        key.push(value);
+      }
+
+      localStorage.setItem(type, JSON.stringify(key));
+      this.setState({ [type]: key });
+      if (type === "styles" && styleId === null) this.closeCreateForm();
   }
 
-  handleClose = () => {
+  closeCreateForm = () => {
     this.setState({ creating: false });
   }
 
@@ -111,7 +120,7 @@ class App extends React.Component {
               ? 
                 <StyleForm
                   type="create"
-                  handleClose={this.handleClose}
+                  closeCreateForm={this.closeCreateForm}
                   handleSubmit={this.handleSubmit}
                 />
               :
@@ -125,6 +134,7 @@ class App extends React.Component {
           <StyleList
             styles={filteredStyles.reverse()}
             remove={this.delete}
+            handleSubmit={this.handleSubmit}
           />
         </div>
       </div>

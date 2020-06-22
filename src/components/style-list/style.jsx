@@ -11,30 +11,39 @@ export default class Style extends React.Component {
         };
     }
 
-    closeForm = () => {
+    closeEditForm = () => {
         this.setState({ editing: false });
     }
 
     render() {
 
-        const { style, remove } = this.props;
+        const { style, remove, handleSubmit } = this.props;
 
-        if (this.state.editing) {
-            return <StyleForm type="edit" style={style} closeForm={this.closeForm} />;
-        } else {
-            return (
-                <div className="style">
-                    <div className="edit-delete-style">
-                        <button onClick={() => this.setState({ editing: true })}>
-                            Edit
-                        </button>
-                        <button onClick={() => remove(style.id)}>
-                            Delete
-                        </button>
-                    </div>
-                    {style.text}
-                </div>
-            )
-        }
+        return (
+            <>
+                {
+                    this.state.editing
+                        ?
+                            <StyleForm 
+                                type="edit" 
+                                style={style} 
+                                closeEditForm={this.closeEditForm} 
+                                handleSubmit={handleSubmit}
+                            />
+                        :
+                            <div className="style">
+                                <div className="edit-delete-style">
+                                    <button onClick={() => this.setState({ editing: true })}>
+                                        Edit
+                                    </button>
+                                    <button onClick={() => remove(style.id)}>
+                                        Delete
+                                    </button>
+                                </div>
+                                {style.text}
+                            </div>
+                }
+            </>
+        )
     }
 }
