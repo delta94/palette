@@ -11,7 +11,7 @@ export default class Textarea extends React.Component {
         if (props.type === "create") {
             text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
             font = "Roboto";
-            size = "14px";
+            size = "15px";
             weight = "400";
             style = "normal";
             decoration = "none";
@@ -26,7 +26,19 @@ export default class Textarea extends React.Component {
             color = props.style.color;
         }
 
-        this.state = { text, font, size, weight, style, decoration, color, fonts: null };
+        this.state = { 
+            text, 
+            font, 
+            size, 
+            weight, 
+            style, 
+            decoration, 
+            color, 
+            fonts: null, 
+            weights: ["100", "300", "400", "500", "700", "900"],
+            category: null
+        };
+
         this.textarea = React.createRef();
     }
 
@@ -37,21 +49,31 @@ export default class Textarea extends React.Component {
         fetch(`https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=${process.env.REACT_APP_API_KEY}`)
             .then(response => response.json())
             .then(googleFonts => {                
-                for (let i = 0; i < 30; i++) {
-                    fonts.push(googleFonts.items[i].family);
+                for (let i = 0; i < 40; i++) {
+                    fonts.push(googleFonts.items[i]);
                 }
 
-                this.setState({ fonts: fonts }); 
+                this.setState({ fonts }); 
 
                 let href = [`https://fonts.googleapis.com/css2?`, `&display=swap`];
                 let string = "";
 
                 for (let i = 0; i < fonts.length; i++) {
-                    let font = fonts[i];
+                    const font = fonts[i];
+                    let family = font.family;
 
-                    if (font.split(" ").length > 1) font = font.split(" ").join("+");
-                    
-                    i === 0 ? string += `family=${font}` : string += `&family=${font}`;
+                    if (family === this.state.font) {
+                        const variants = font.variants.filter(weight => weight.length < 4 || weight === "regular");
+                        const regularIdx = variants.indexOf("regular");
+
+                        if (regularIdx !== null) variants[regularIdx] = "400";
+                        if (family.split(" ").length > 1) family = family.split(" ").join("+");
+                        
+                        i === 0 ? string += `family=${family}` : string += `&family=${family}`;
+                        string += `:wght@${variants.join(";")}`;
+
+                        this.setState({ category: font.category });
+                    }
                 }
 
                 href = href.join(string);
@@ -59,8 +81,43 @@ export default class Textarea extends React.Component {
                 let link = document.createElement("link");
                 link.href = href;
                 link.rel = "stylesheet";
+                link.classList.add("google-fonts-link");
                 document.getElementsByTagName("head")[0].appendChild(link);
             });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { font, fonts } = this.state;
+
+        if (prevState.font !== font) {
+            let weights;
+            let newHref = [`https://fonts.googleapis.com/css2?`, `&display=swap`];
+            let string = "";
+
+            for (let i = 0; i < fonts.length; i++) {
+                    let family = fonts[i].family;
+                if (family === font) {
+                    const variants = fonts[i].variants;
+                    weights = variants.filter(weight => weight.length < 4 || weight === "regular");
+
+                    const regularIdx = weights.indexOf("regular");
+
+                    if (regularIdx !== null) weights[regularIdx] = "400";
+
+                    if (family.split(" ").length > 1) family = family.split(" ").join("+");
+                    i === 0 ? string += `family=${family}` : string += `&family=${family}`;
+                    string += `:wght@${weights.join(";")}`;
+
+                    this.setState({ weights, category: fonts[i].category });
+
+                    break;
+                }
+            }
+
+            newHref = newHref.join(string);
+            const oldLink = document.querySelector(".google-fonts-link");
+            oldLink.href = newHref;
+        }
     }
 
     handleChange = (e, field) => {
@@ -76,7 +133,7 @@ export default class Textarea extends React.Component {
 
     render() {
         const { type, handleSubmit, closeCreateForm, closeEditForm, code } = this.props;
-        const { text, font, size, weight, style, decoration, color, fonts } = this.state;
+        const { text, font, size, weight, style, decoration, color, fonts, weights } = this.state;
 
         if (code) {
             return <Code style={this.state} />
@@ -94,7 +151,7 @@ export default class Textarea extends React.Component {
                                     ? 
                                         fonts.map((font, i) => (
                                             <option key={`font-option-${i}`}>
-                                                {font}
+                                                {font.family}
                                             </option>
                                         ))
                                     : null
@@ -119,15 +176,16 @@ export default class Textarea extends React.Component {
                             <select
                                 value={weight}
                                 onChange={e => this.setState({ weight: e.target.value })}>
-                                <option>100</option>
-                                <option>200</option>
-                                <option>300</option>
-                                <option>400</option>
-                                <option>500</option>
-                                <option>600</option>
-                                <option>700</option>
-                                <option>800</option>
-                                <option>900</option>
+                                {
+                                    weights
+                                    ?
+                                        this.state.weights.map((weight, i) => (
+                                            <option key={`weight-option-${i}`}>
+                                                {weight}
+                                            </option>
+                                        ))
+                                    : null
+                                }
                             </select>
                         </div>
                         <div className="font-style-icon">
