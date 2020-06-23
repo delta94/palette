@@ -13,7 +13,6 @@
 }
 
 .form-style select, .form-style input {
-    border: 1px solid #eee;
     padding: 2px;
     margin-right: 10px;
     font-size: 13px;
@@ -27,6 +26,7 @@
 
 .form-style select {
     width: 50px;
+    border: 1px solid #eee;
 }
 
 select.font-select {
@@ -37,6 +37,12 @@ select.font-select {
     display: inline-block;
     border: 1px solid #eee;
     padding: 0 3px;
+    transition: border 150ms ease-in-out;
+}
+
+.color-input-form.focused {
+    border: 1px solid #0081ff;
+    transition: border 150ms ease-in-out;
 }
 
 input.color-input {
@@ -72,6 +78,13 @@ span.material-icons {
 
 input.size-input {
     margin-left: 24px;
+    border: 1px solid #eee;
+    transition: border 150ms ease-in-out;
+}
+
+input.size-input.focused {
+    border: 1px solid #0081ff;
+    transition: border 150ms ease-in-out;
 }
 
 .font-style-icon {

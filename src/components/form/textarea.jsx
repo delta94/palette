@@ -36,7 +36,9 @@ export default class Textarea extends React.Component {
             color, 
             fonts: null, 
             weights: ["100", "300", "400", "500", "700", "900"],
-            category: null
+            category: null,
+            sizeClass: "",
+            colorClass: ""
         };
 
         this.textarea = React.createRef();
@@ -133,7 +135,7 @@ export default class Textarea extends React.Component {
 
     render() {
         const { type, handleSubmit, closeCreateForm, closeEditForm, code } = this.props;
-        const { text, font, size, weight, style, decoration, color, fonts, weights } = this.state;
+        const { text, font, size, weight, style, decoration, color, fonts, weights, sizeClass, colorClass } = this.state;
 
         if (code) {
             return <Code style={this.state} />
@@ -163,12 +165,14 @@ export default class Textarea extends React.Component {
                                 format_size
                             </span>
                             <input
-                                className="size-input"
+                                className={`size-input ${sizeClass}`}
                                 value={size}
                                 onChange={e => this.setState({ size: e.target.value })}
                                 type="text"
                                 maxLength="4"
                                 spellCheck="false"
+                                onFocus={() => this.setState({ sizeClass: "focused" })}
+                                onBlur={() => this.setState({ sizeClass: "" })}
                             />
                         </div>
                         <div>
@@ -200,7 +204,7 @@ export default class Textarea extends React.Component {
                                 onClick={() => this.setState({ decoration: decoration === "underline" ? "none" : "underline" })}>
                             </i>
                         </div>
-                        <div className="color-input-form">
+                        <div className={`color-input-form ${colorClass}`}>
                             <i className="fas fa-palette"></i>
                             #
                             <input
@@ -211,6 +215,8 @@ export default class Textarea extends React.Component {
                                 spellCheck="false"
                                 value={color}
                                 onChange={e => this.setState({ color: e.target.value })}
+                                onFocus={() => this.setState({ colorClass: "focused" })}
+                                onBlur={() => this.setState({ colorClass: "" })}
                             />
                         </div>
                     </div>
