@@ -1,0 +1,19 @@
+.code-container {
+    margin-top: 30px;
+    padding: 15px;
+    padding-bottom: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+}
+
+.code-container button {
+    padding: 0;
+}
+
+.code {
+    background-color: #f7f7f7;
+    padding: 15px;
+    margin: 15px 0 6px 0;
+    font-size: 14px;
+    line-height: 1.5em;
+}

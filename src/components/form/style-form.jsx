@@ -1,7 +1,6 @@
 import React from 'react';
 import './style-form.css';
 import Textarea from './textarea';
-import { Code } from './code';
 
 export default class StyleForm extends React.Component {
     constructor(props) {
@@ -10,6 +9,10 @@ export default class StyleForm extends React.Component {
         this.state = {
             code: false
         };
+    }
+
+    toggleCode() {
+        this.setState({ code: !this.state.code });
     }
     
     render() {
@@ -32,19 +35,14 @@ export default class StyleForm extends React.Component {
                         <li></li>
                     </ul>
                 </div>
-                {
-                    code 
-                        ? 
-                            <Code /> 
-                        : 
-                            <Textarea 
-                                handleSubmit={handleSubmit}
-                                closeCreateForm={closeCreateForm}
-                                closeEditForm={closeEditForm}
-                                type={type}
-                                style={style}
-                            />
-                }
+                <Textarea 
+                    handleSubmit={handleSubmit}
+                    closeCreateForm={closeCreateForm}
+                    closeEditForm={closeEditForm}
+                    type={type}
+                    style={style}
+                    code={code}
+                />
             </div>
         )
     }
