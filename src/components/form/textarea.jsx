@@ -10,7 +10,7 @@ export default class Textarea extends React.Component {
 
         if (props.type === "create") {
             text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-            font = "Open Sans";
+            font = "Roboto";
             size = "14px";
             weight = "400";
             style = "normal";
@@ -26,13 +26,41 @@ export default class Textarea extends React.Component {
             color = props.style.color;
         }
 
-        this.state = { text, font, size, weight, style, decoration, color };
-        
+        this.state = { text, font, size, weight, style, decoration, color, fonts: null };
         this.textarea = React.createRef();
     }
 
     componentDidMount() {
+        const fonts = [];
+
         this.textarea.current.focus();
+        fetch(``)
+            .then(response => response.json())
+            .then(googleFonts => {                
+                for (let i = 0; i < 30; i++) {
+                    fonts.push(googleFonts.items[i].family);
+                }
+
+                this.setState({ fonts: fonts }); 
+
+                let href = [`https://fonts.googleapis.com/css2?`, `&display=swap`];
+                let string = "";
+
+                for (let i = 0; i < fonts.length; i++) {
+                    let font = fonts[i];
+
+                    if (font.split(" ").length > 1) font = font.split(" ").join("+");
+                    
+                    i === 0 ? string += `family=${font}` : string += `&family=${font}`;
+                }
+
+                href = href.join(string);
+
+                let link = document.createElement("link");
+                link.href = href;
+                link.rel = "stylesheet";
+                document.getElementsByTagName("head")[0].appendChild(link);
+            });
     }
 
     handleChange = (e, field) => {
@@ -48,7 +76,7 @@ export default class Textarea extends React.Component {
 
     render() {
         const { type, handleSubmit, closeCreateForm, closeEditForm, code } = this.props;
-        const { text, font, size, weight, style, decoration, color } = this.state;
+        const { text, font, size, weight, style, decoration, color, fonts } = this.state;
 
         if (code) {
             return <Code style={this.state} />
@@ -61,11 +89,16 @@ export default class Textarea extends React.Component {
                             <select
                                 className="font-select" value={font}
                                 onChange={e => this.setState({ font: e.target.value })}>
-                                <option>Arial</option>
-                                <option>Arial Black</option>
-                                <option>Open Sans</option>
-                                <option>Palatino</option>
-                                <option>Verdana</option>
+                                {
+                                    fonts
+                                    ? 
+                                        fonts.map((font, i) => (
+                                            <option key={`font-option-${i}`}>
+                                                {font}
+                                            </option>
+                                        ))
+                                    : null
+                                }
                             </select>
                         </div>
                         <div>

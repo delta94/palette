@@ -30,7 +30,7 @@
 }
 
 select.font-select {
-    width: 115px;
+    width: auto;
 }
 
 .color-input-form {
