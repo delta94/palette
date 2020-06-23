@@ -34,7 +34,7 @@ export default class Textarea extends React.Component {
         const fonts = [];
 
         this.textarea.current.focus();
-        fetch(``)
+        fetch(`https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=${process.env.REACT_APP_API_KEY}`)
             .then(response => response.json())
             .then(googleFonts => {                
                 for (let i = 0; i < 30; i++) {
