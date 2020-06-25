@@ -137,127 +137,130 @@ export default class Textarea extends React.Component {
         const { type, handleSubmit, closeCreateForm, closeEditForm, code } = this.props;
         const { text, font, size, weight, style, decoration, color, fonts, weights, sizeClass, colorClass } = this.state;
 
-        if (code) {
-            return <Code style={this.state} />
-        } else {
-            return (
-                <form>
-                    <div className="form-style">
-                        <div>
-                            <i className="fas fa-font"></i>
-                            <select
-                                className="font-select" value={font}
-                                onChange={e => this.setState({ font: e.target.value })}>
-                                {
-                                    fonts
-                                    ? 
-                                        fonts.map((font, i) => (
-                                            <option key={`font-option-${i}`}>
-                                                {font.family}
-                                            </option>
-                                        ))
-                                    : null
-                                }
-                            </select>
-                        </div>
-                        <div>
-                            <span className="material-icons">
-                                format_size
-                            </span>
-                            <input
-                                className={`size-input ${sizeClass}`}
-                                value={size}
-                                onChange={e => this.setState({ size: e.target.value })}
-                                type="text"
-                                maxLength="4"
-                                spellCheck="false"
-                                onFocus={() => this.setState({ sizeClass: "focused" })}
-                                onBlur={() => this.setState({ sizeClass: "" })}
-                            />
-                        </div>
-                        <div>
-                            <i className="fas fa-bold"></i>
-                            <select
-                                value={weight}
-                                onChange={e => this.setState({ weight: e.target.value })}>
-                                {
-                                    weights
-                                    ?
-                                        this.state.weights.map((weight, i) => (
-                                            <option key={`weight-option-${i}`}>
-                                                {weight}
-                                            </option>
-                                        ))
-                                    : null
-                                }
-                            </select>
-                        </div>
-                        <div className="font-style-icon">
-                            <i
-                                className="fas fa-italic"
-                                style={{ color: style === "italic" ? "#0081ff" : "" }}
-                                onClick={() => this.setState({ style: style === "normal" ? "italic" : "normal" })}>
-                            </i>
-                            <i
-                                className="fas fa-underline"
-                                style={{ color: decoration === "underline" ? "#0081ff" : "" }}
-                                onClick={() => this.setState({ decoration: decoration === "underline" ? "none" : "underline" })}>
-                            </i>
-                        </div>
-                        <div className={`color-input-form ${colorClass}`}>
-                            <i className="fas fa-palette"></i>
-                            #
-                            <input
-                                className="color-input"
-                                type="text"
-                                placeholder="000000"
-                                maxLength="6"
-                                spellCheck="false"
-                                value={color}
-                                onChange={e => this.setState({ color: e.target.value })}
-                                onFocus={() => this.setState({ colorClass: "focused" })}
-                                onBlur={() => this.setState({ colorClass: "" })}
-                            />
-                        </div>
-                    </div>
-                    <textarea
-                        ref={this.textarea}
-                        placeholder="Add text"
-                        value={text}
-                        onChange={e => this.handleChange(e, "text")}
-                        spellCheck="false"
-                        style={{
-                            fontFamily: font,
-                            fontSize: size,
-                            fontWeight: weight,
-                            fontStyle: style,
-                            textDecoration: decoration,
-                            color: "#" + color
-                        }}
-                    />
-                    {
-                        type === "create"
-                            ?
-                                <div className="cancel-save-btn">
-                                    <button onClick={closeCreateForm}>
-                                        Cancel
-                                    </button>
-                                    <button onClick={() => handleSubmit("styles", this.state)}>
-                                        Save
-                                    </button>
+        return (
+            <>
+                {
+                    code
+                        ? <Code style={this.state} />
+                        :   
+                            <form>
+                                <div className="form-style">
+                                    <div>
+                                        <i className="fas fa-font"></i>
+                                        <select
+                                            className="font-select" value={font}
+                                            onChange={e => this.setState({ font: e.target.value })}>
+                                            {
+                                                fonts
+                                                ? 
+                                                    fonts.map((font, i) => (
+                                                        <option key={`font-option-${i}`}>
+                                                            {font.family}
+                                                        </option>
+                                                    ))
+                                                : null
+                                            }
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <span className="material-icons">
+                                            format_size
+                                        </span>
+                                        <input
+                                            className={`size-input ${sizeClass}`}
+                                            value={size}
+                                            onChange={e => this.setState({ size: e.target.value })}
+                                            type="text"
+                                            maxLength="4"
+                                            spellCheck="false"
+                                            onFocus={() => this.setState({ sizeClass: "focused" })}
+                                            onBlur={() => this.setState({ sizeClass: "" })}
+                                        />
+                                    </div>
+                                    <div>
+                                        <i className="fas fa-bold"></i>
+                                        <select
+                                            value={weight}
+                                            onChange={e => this.setState({ weight: e.target.value })}>
+                                            {
+                                                weights
+                                                ?
+                                                    this.state.weights.map((weight, i) => (
+                                                        <option key={`weight-option-${i}`}>
+                                                            {weight}
+                                                        </option>
+                                                    ))
+                                                : null
+                                            }
+                                        </select>
+                                    </div>
+                                    <div className="font-style-icon">
+                                        <i
+                                            className="fas fa-italic"
+                                            style={{ color: style === "italic" ? "#0081ff" : "" }}
+                                            onClick={() => this.setState({ style: style === "normal" ? "italic" : "normal" })}>
+                                        </i>
+                                        <i
+                                            className="fas fa-underline"
+                                            style={{ color: decoration === "underline" ? "#0081ff" : "" }}
+                                            onClick={() => this.setState({ decoration: decoration === "underline" ? "none" : "underline" })}>
+                                        </i>
+                                    </div>
+                                    <div className={`color-input-form ${colorClass}`}>
+                                        <i className="fas fa-palette"></i>
+                                        #
+                                        <input
+                                            className="color-input"
+                                            type="text"
+                                            placeholder="000000"
+                                            maxLength="6"
+                                            spellCheck="false"
+                                            value={color}
+                                            onChange={e => this.setState({ color: e.target.value })}
+                                            onFocus={() => this.setState({ colorClass: "focused" })}
+                                            onBlur={() => this.setState({ colorClass: "" })}
+                                        />
+                                    </div>
                                 </div>
-                            :
-                                <div className="cancel-save-btn">
-                                    <button onClick={closeEditForm}>
-                                        Cancel
-                                    </button>
-                                    <button onClick={e => this.handleSubmit(e, this.state)}>
-                                        Save
-                                    </button>
-                                </div>
-                    }
-                </form>
-            )
-        }
+                                <textarea
+                                    ref={this.textarea}
+                                    placeholder="Add text"
+                                    value={text}
+                                    onChange={e => this.handleChange(e, "text")}
+                                    spellCheck="false"
+                                    style={{
+                                        fontFamily: font,
+                                        fontSize: size,
+                                        fontWeight: weight,
+                                        fontStyle: style,
+                                        textDecoration: decoration,
+                                        color: "#" + color
+                                    }}
+                                />
+                            </form>
+                }
+                {
+                    type === "create"
+                        ?
+                            <div className="cancel-save-btn">
+                                <button onClick={closeCreateForm}>
+                                    Cancel
+                                </button>
+                                <button onClick={() => handleSubmit("styles", this.state)}>
+                                    Save
+                                </button>
+                            </div>
+                        :
+                            <div className="cancel-save-btn">
+                                <button onClick={closeEditForm}>
+                                    Cancel
+                                </button>
+                                <button onClick={e => this.handleSubmit(e, this.state)}>
+                                    Save
+                                </button>
+                            </div>
+                }
+            </>
+        )
     }
 }

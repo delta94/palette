@@ -41,7 +41,7 @@ export default class Color extends React.Component {
                             onClick={this.copy}>
                             <i 
                                 className="fas fa-times"
-                                onClick={() => handleDelete(color.id, "colors")}>
+                                onClick={e => (e.stopPropagation() ,handleDelete(color.id, "colors"))}>
                             </i>
                             <div className="color-copy">
                                 <p>{copy}</p>
