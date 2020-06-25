@@ -17,7 +17,7 @@ export default class ColorList extends React.Component {
     }
 
     render() {
-        const { colors } = this.props;
+        const { colors, handleDelete } = this.props;
 
         return (
             <div className="color-list">
@@ -26,6 +26,7 @@ export default class ColorList extends React.Component {
                         <Color
                             key={`color-${i}`}
                             color={color}
+                            handleDelete={handleDelete}
                         />
                     )
                 }

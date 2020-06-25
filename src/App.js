@@ -75,19 +75,19 @@ class App extends React.Component {
     this.setState({ creating: false });
   }
 
-  delete = id => {
-    const styles = this.state.styles;
-
-    for (let i = 0; i < styles.length; i++) {
-      if (styles[i] && styles[i].id === id) delete styles[i];
+  handleDelete = (id, type) => {
+    const key = this.state[type];
+    
+    for (let i = 0; i < key.length; i++) {
+      if (key[i] && key[i].id === id) delete key[i];
     }
     
-    const filteredStyles = styles.filter(style => {
-      return style !== null;
+    const filtered = key.filter(k => {
+      return k !== null;
     });
 
-    this.setState({ styles: filteredStyles });
-    localStorage.setItem("styles", JSON.stringify(filteredStyles));
+    this.setState({ [type]: filtered });
+    localStorage.setItem(`${type}`, JSON.stringify(filtered));
   }
 
   render() {
@@ -120,7 +120,9 @@ class App extends React.Component {
             <h1>Colors</h1>
             <ColorList 
               colors={filteredColors}
-              handleSubmit={this.handleSubmit} />
+              handleSubmit={this.handleSubmit} 
+              handleDelete={this.handleDelete}  
+            />
           </div>
           <div className="styles">
             <h1>Fonts</h1>
@@ -147,7 +149,7 @@ class App extends React.Component {
             }
             <StyleList
               styles={filteredStyles.reverse()}
-              remove={this.delete}
+              handleDelete={this.handleDelete}
               handleSubmit={this.handleSubmit}
             />
           </div>

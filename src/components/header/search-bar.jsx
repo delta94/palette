@@ -6,7 +6,7 @@ export const SearchBar = props => (
         <input
             type="search"
             onChange={props.handleChange}
-            placeholder="Search by font, color or text"
+            placeholder="Search by color, font or text"
             spellCheck="false"
         />
     </div>

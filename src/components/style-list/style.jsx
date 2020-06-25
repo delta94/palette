@@ -17,7 +17,7 @@ export default class Style extends React.Component {
 
     render() {
 
-        const { style, remove, handleSubmit } = this.props;
+        const { style, handleDelete, handleSubmit } = this.props;
 
         return (
             <>
@@ -36,7 +36,7 @@ export default class Style extends React.Component {
                                     <button onClick={() => this.setState({ editing: true })}>
                                         Edit
                                     </button>
-                                    <button onClick={() => remove(style.id)}>
+                                    <button onClick={() => handleDelete(style.id, "styles")}>
                                         Delete
                                     </button>
                                 </div>
