@@ -5,10 +5,7 @@ export default class ColorForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            color: ""
-        };
-
+        this.state = { color: "" };
         this.textarea = React.createRef();
     }
 

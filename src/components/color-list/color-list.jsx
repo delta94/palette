@@ -4,20 +4,14 @@ import ColorForm from '../form/color-form';
 import Color from './color';
 
 export default class ColorList extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            adding: false
-        };
-    }
+    state = { adding: false };
 
     handleClose = () => {
         this.setState({ adding: false });
     }
 
     render() {
-        const { colors, handleDelete } = this.props;
+        const { colors, handleDelete, handleSubmit } = this.props;
 
         return (
             <div className="color-list">
@@ -32,16 +26,14 @@ export default class ColorList extends React.Component {
                 }
                 {
                     this.state.adding
-                        ? 
-                            <ColorForm 
-                                handleClose={this.handleClose}
-                                handleSubmit={this.props.handleSubmit}
-                            />
-                        :
-                            <div className="add-color"
-                                onClick={() => this.setState({ adding: true })}>
-                                <i className="fas fa-plus"></i>
-                            </div> 
+                        ? <ColorForm 
+                            handleClose={this.handleClose}
+                            handleSubmit={handleSubmit}
+                        />
+                        : <div className="add-color"
+                            onClick={() => this.setState({ adding: true })}>
+                            <i className="fas fa-plus"></i>
+                        </div> 
                 }
             </div>
         )

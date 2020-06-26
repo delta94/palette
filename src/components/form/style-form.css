@@ -60,7 +60,8 @@
     text-align: center;
 }
 
-.form-header li:first-child, .form-header li:nth-child(2) {
+.form-header li:first-child, 
+.form-header li:nth-child(2) {
     cursor: pointer;
 }
 

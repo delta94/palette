@@ -2,14 +2,7 @@ import React from 'react';
 import './color.css';
 
 export default class Color extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            show: false,
-            copy: "Copy"
-        };
-    }
+    state = { show: false, copy: "Copy" };
 
     copy = () => {
         this.setState({ copy: "Copied!" });
@@ -23,9 +16,15 @@ export default class Color extends React.Component {
         return result;
     };
 
+    handleDelete = e => {
+        const { color, handleDelete } = this.props;
+        e.stopPropagation();
+        handleDelete(color.id, "colors");
+    }
+
     render() {
         const { show, copy } = this.state;
-        const { color, handleDelete } = this.props;
+        const { color } = this.props;
 
         return (
             <div 
@@ -35,19 +34,17 @@ export default class Color extends React.Component {
                 onMouseLeave={() => this.setState({ show: false, copy: "Copy" })}>
                 {
                     show 
-                    ? 
-                        <div 
-                            className="colored-dark"
-                            onClick={this.copy}>
-                            <i 
-                                className="fas fa-times"
-                                onClick={e => (e.stopPropagation() ,handleDelete(color.id, "colors"))}>
-                            </i>
-                            <div className="color-copy">
-                                <p>{copy}</p>
-                            </div>
+                    ? <div 
+                        className="colored-dark"
+                        onClick={this.copy}>
+                        <i 
+                            className="fas fa-times"
+                            onClick={e => this.handleDelete(e)}>
+                        </i>
+                        <div className="color-copy">
+                            <p>{copy}</p>
                         </div>
-                    : null
+                    </div> : null
                 }
             </div>
         )

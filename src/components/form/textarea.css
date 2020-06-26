@@ -12,7 +12,8 @@
     position: relative;
 }
 
-.form-style select, .form-style input {
+.form-style select, 
+.form-style input {
     padding: 2px;
     margin-right: 10px;
     font-size: 13px;
@@ -94,5 +95,6 @@ input.size-input.focused {
 
 .cancel-save-btn {
     text-align: right;
+    padding: 3px 0;
     margin-right: 15px;
 }

@@ -3,17 +3,7 @@ import './style-form.css';
 import Textarea from './textarea';
 
 export default class StyleForm extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            code: false
-        };
-    }
-
-    toggleCode() {
-        this.setState({ code: !this.state.code });
-    }
+    state = { code: false };
     
     render() {
         const { type, handleSubmit, closeCreateForm, closeEditForm, style } = this.props;
