@@ -3,7 +3,7 @@ import './App.css';
 import './reset.css';
 import { TopNav } from './components/header/top-nav';
 import { SearchBar } from './components/header/search-bar';
-import { StyleList } from './components/style-list/style-list';
+import StyleList from './components/style-list/style-list';
 import ColorList from './components/color-list/color-list';
 import StyleForm from './components/form/style-form';
 
@@ -20,6 +20,18 @@ class App extends React.Component {
       styles: JSON.parse(localStorage.getItem("styles")) || [],
       colors: JSON.parse(localStorage.getItem("colors")) || []
     });
+  }
+
+  componentDidUpdate() {
+    const { creating } = this.state;
+    let link = document.querySelector(".google-fonts-link");
+
+    if (creating && link && !link.href.includes("Roboto")) {
+      let href = link.href;
+      const splitIdx = href.indexOf("&display=swap");
+      href = `${href.slice(0, splitIdx)}&family=Roboto:wght@400${href.slice(splitIdx)}`;
+      link.href = href;
+    }
   }
 
   handleChange = e => {

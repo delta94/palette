@@ -28,7 +28,7 @@ export default class Textarea extends React.Component {
 
         this.state = { text, font, size, weight, style, decoration, color, 
             fonts: null, 
-            weights: ["100", "300", "400", "500", "700", "900"],
+            weights: null,
             category: null,
             sizeClass: "",
             colorClass: ""
@@ -38,73 +38,54 @@ export default class Textarea extends React.Component {
     }
 
     componentDidMount() {
-        const fonts = [];
-
         this.textarea.current.focus();
+
         fetch(`https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=${process.env.REACT_APP_API_KEY}`)
             .then(response => response.json())
-            .then(googleFonts => {                
+            .then(googleFonts => {           
+                const fonts = [];
                 for (let i = 0; i < 40; i++) fonts.push(googleFonts.items[i]);
                 this.setState({ fonts }); 
-                
-                let href = [`https://fonts.googleapis.com/css2?`, `&display=swap`];
-                let string = "";
 
                 for (let i = 0; i < fonts.length; i++) {
                     const font = fonts[i];
-                    let family = font.family;
+                    let { family, variants } = font;
 
                     if (family === this.state.font) {
-                        const { category } = font;
-                        this.setState({ category });
+                        const weights = variants.filter(weight => weight.length < 4 || weight === "regular");
+                        const regularIdx = weights.indexOf("regular");
+                        if (regularIdx !== null) weights[regularIdx] = "400";
 
-                        const variants = font.variants.filter(weight => weight.length < 4 || weight === "regular");
-                        const regularIdx = variants.indexOf("regular");
-                        if (regularIdx !== null) variants[regularIdx] = "400";
-                        if (family.split(" ").length > 1) family = family.split(" ").join("+");
-                        i === 0 ? string += `family=${family}` : string += `&family=${family}`;
-                        string += `:wght@${variants.join(";")}`;
+                        const { category } = font;
+                        this.setState({ category, weights });
+
+                        break;
                     }
                 }
-
-                const link = document.createElement("link");
-                href = href.join(string);
-                link.href = href;
-                link.rel = "stylesheet";
-                link.classList.add("google-fonts-link");
-                document.getElementsByTagName("head")[0].appendChild(link);
         });
+
+        let link = document.querySelector(".google-fonts-link");
+
+        if (!link) {
+            const href = "https://fonts.googleapis.com/css2?family=Roboto&display=swap";
+            link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.classList.add("google-fonts-link");
+            document.getElementsByTagName("head")[0].appendChild(link);
+            link.href = href;
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const { font, fonts } = this.state;
+        let { font, weight } = this.state;
 
         if (prevState.font !== font) {
-            let weights;
-            let newHref = [`https://fonts.googleapis.com/css2?`, `&display=swap`];
-            let string = "";
-
-            for (let i = 0; i < fonts.length; i++) {
-                let family = fonts[i].family;
-                if (family === font) {
-                    const { category } = fonts[i];
-                    this.setState({ weights, category });
-
-                    const variants = fonts[i].variants;
-                    weights = variants.filter(weight => weight.length < 4 || weight === "regular");
-                    const regularIdx = weights.indexOf("regular");
-                    if (regularIdx !== null) weights[regularIdx] = "400";
-                    if (family.split(" ").length > 1) family = family.split(" ").join("+");
-                    i === 0 ? string += `family=${family}` : string += `&family=${family}`;
-                    string += `:wght@${weights.join(";")}`;
-
-                    break;
-                }
-            }
-
-            newHref = newHref.join(string);
-            const oldLink = document.querySelector(".google-fonts-link");
-            oldLink.href = newHref;
+            const link = document.querySelector(".google-fonts-link");
+            let href = link.href;
+            if (font.split(" ").length > 1) font = font.split(" ").join("+");
+            const splitIdx = href.indexOf("&display=swap");
+            href = `${href.slice(0, splitIdx)}&family=${font}:wght@${weight}${href.slice(splitIdx)}`;
+            link.href = href;
         }
     }
 
