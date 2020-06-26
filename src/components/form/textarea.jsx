@@ -15,7 +15,7 @@ export default class Textarea extends React.Component {
             weight = "400";
             style = "normal";
             decoration = "none";
-            color = "";
+            color = "000000";
         } else {
             text = props.style.text;
             font = props.style.font;
@@ -95,9 +95,28 @@ export default class Textarea extends React.Component {
 
     handleSubmit = (e, input) => {
         e.preventDefault();
-        const { handleSubmit, style, closeEditForm } = this.props;
-        handleSubmit("styles", input, style.id);
-        closeEditForm();
+
+        if (this.isValid()) {
+            const { handleSubmit, style, closeEditForm } = this.props;
+            handleSubmit("styles", input, style.id);
+            closeEditForm();
+        }
+    }
+
+    isValid = () => {
+        const { color, size } = this.state;
+        const px = size.slice(size.length - 2);
+        const num = size.slice(0, size.length - 2);
+
+        if (px !== "px" || num !== parseInt(num).toString()) {
+            this.setState({ sizeClass: "error" });
+            return false;
+        } else if (color === "") {
+            this.setState({ colorClass: "error" });
+            return false;
+        }
+        
+        return true;
     }
 
     render() {
@@ -174,7 +193,6 @@ export default class Textarea extends React.Component {
                                     <input
                                         className="color-input"
                                         type="text"
-                                        placeholder="000000"
                                         maxLength="6"
                                         spellCheck="false"
                                         value={color}
@@ -207,7 +225,7 @@ export default class Textarea extends React.Component {
                             <button onClick={closeCreateForm}>
                                 Cancel
                             </button>
-                            <button onClick={() => handleSubmit("styles", this.state)}>
+                            <button onClick={() => this.isValid() ? handleSubmit("styles", this.state) : null}>
                                 Save
                             </button>
                         </div>

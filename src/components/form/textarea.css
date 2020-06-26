@@ -46,6 +46,11 @@ select.font-select {
     transition: border 150ms ease-in-out;
 }
 
+.color-input-form.error {
+    border: 1px solid #ff0000;
+    transition: border 150ms ease-in-out;
+}
+
 input.color-input {
     border: 0;
     padding-left: 1px;
@@ -85,6 +90,11 @@ input.size-input {
 
 input.size-input.focused {
     border: 1px solid #0081ff;
+    transition: border 150ms ease-in-out;
+}
+
+input.size-input.error {
+    border: 1px solid #ff0000;
     transition: border 150ms ease-in-out;
 }
 
