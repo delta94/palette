@@ -11,4 +11,5 @@
     font-weight: 600;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: border 250ms ease-in-out;
 }

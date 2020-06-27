@@ -1,6 +1,6 @@
 import React from 'react';
 import './top-nav.css';
-import { SearchBar } from './search-bar';
+import SearchBar from './search-bar';
 
 export const TopNav = props => (
     <nav className="top-nav-container">

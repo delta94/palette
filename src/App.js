@@ -90,7 +90,9 @@ class App extends React.Component {
     const { creating, styles, colors } = this.state;
 
     styles.forEach((style, id) => {
-      if (style && style.text.toLowerCase().includes(this.state.searchText.toLowerCase())) {
+      if (style 
+          && (style.text.toLowerCase().includes(this.state.searchText.toLowerCase())
+          || style.font.toLowerCase().includes(this.state.searchText.toLowerCase()))) {
           filteredStyles.push({ id, style });
       }
     });
