@@ -18,3 +18,14 @@
     border: 0;
     font-size: 12px;
 }
+
+.style-label {
+    color: #999;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: -5px;
+}

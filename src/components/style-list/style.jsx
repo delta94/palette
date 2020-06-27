@@ -43,6 +43,9 @@ export default class Style extends React.Component {
                                 }}>
                                 {style.text}
                             </span>
+                            <div className="style-label">
+                                {`${style.font} — ${style.size}, #${style.color}`}
+                            </div>
                         </div>
                 }
             </>
