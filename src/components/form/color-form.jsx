@@ -23,7 +23,7 @@ export default class ColorForm extends React.Component {
                     className="colored"
                     style={{ backgroundColor: `#${color}` }}>
                 </div>
-                <div className="add-color-form">
+                <div id="color-form" className="add-color-form">
                     <div className="color-code">
                         #
                         <input
