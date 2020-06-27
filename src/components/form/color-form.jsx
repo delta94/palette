@@ -5,7 +5,12 @@ export default class ColorForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { color: "" };
+        this.state = { 
+            color: "", 
+            message: "Press enter to save.",
+            messageColor: ""
+        };
+
         this.textarea = React.createRef();
     }
 
@@ -13,9 +18,24 @@ export default class ColorForm extends React.Component {
         this.textarea.current.focus();
     }
 
-    render() {
+    handleSubmit() {
         const { handleSubmit, handleClose } = this.props;
         const { color } = this.state;
+
+        if (color.length === 3 || color.length === 6) {
+            handleSubmit("colors", color);
+            handleClose();
+        } else {
+            this.setState({ 
+                message: "Invalid color",
+                messageColor: "#ff0000" 
+            });
+        }
+    }
+
+    render() {
+        const { handleClose } = this.props;
+        const { color, message, messageColor } = this.state;
 
         return (
             <div className="add-color">
@@ -35,7 +55,7 @@ export default class ColorForm extends React.Component {
                             onChange={e => this.setState({ color: e.target.value })}
                             value={color}
                             onKeyDown={e => e.key === "Enter" 
-                                ? (handleSubmit("colors", color), handleClose()) 
+                                ? this.handleSubmit()
                                 : null}
                         />
                         <i
@@ -43,7 +63,11 @@ export default class ColorForm extends React.Component {
                             onClick={handleClose}>
                         </i>
                     </div>
-                    <span className="color-code-instruction">Press enter to save.</span>
+                    <span 
+                        className="color-code-instruction"
+                        style={{ color: messageColor }}>
+                        {message}
+                    </span>
                 </div>
             </div>
         )

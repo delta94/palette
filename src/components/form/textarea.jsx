@@ -103,15 +103,26 @@ export default class Textarea extends React.Component {
         }
     }
 
+    handleBlur = () => {
+        const { size } = this.state;
+
+        if ((size.length === 1 || size.length === 2)
+            && (parseInt(size) > 0 || parseInt(size) < 100)) {
+            this.setState({ size: size + "px" });
+        }
+
+        this.setState({ sizeClass: "" });
+    }
+
     isValid = () => {
         const { color, size } = this.state;
         const px = size.slice(size.length - 2);
         const num = size.slice(0, size.length - 2);
-
+        
         if (px !== "px" || num !== parseInt(num).toString()) {
             this.setState({ sizeClass: "error" });
             return false;
-        } else if (color === "") {
+        } else if (!(color.length === 3 || color.length === 6)) {
             this.setState({ colorClass: "error" });
             return false;
         }
@@ -157,7 +168,7 @@ export default class Textarea extends React.Component {
                                         maxLength="4"
                                         spellCheck="false"
                                         onFocus={() => this.setState({ sizeClass: "focused" })}
-                                        onBlur={() => this.setState({ sizeClass: "" })}
+                                        onBlur={this.handleBlur}
                                     />
                                 </div>
                                 <div>
