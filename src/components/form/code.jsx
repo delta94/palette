@@ -1,5 +1,6 @@
 import React from 'react';
 import './code.css';
+import CopyButton from './copy-button';
 
 export const Code = ({ ...props }) => {
     const { font, size, weight, style, decoration, color, category } = props.style;
@@ -8,19 +9,19 @@ export const Code = ({ ...props }) => {
         <div className="code-container">
             <div className="code-instruction-code">
                 <div className="code-instruction">
-                    <button>Copy</button> and paste the code into the {"<head>"} of your html.
+                    <CopyButton type="html" /> and paste the code into the {"<head>"} of your html.
                 </div>
-                <div className="code">
+                <div className="code" id="html-code">
                     {`<link href="https://fonts.googleapis.com/css2?family=`}
-                    <span>{font + `:wght@` + weight}</span>
+                    <span>{font.split(" ").join("+") + `:wght@` + weight}</span>
                     {`&display=swap" rel="stylesheet">`}
                 </div>
             </div>
             <div className="code-instruction-code">
                 <div className="code-instruction">
-                    <button>Copy</button> and paste the code into your CSS file.
+                    <CopyButton type="css" /> and paste the code into your CSS file.
                 </div>
-                <div className="code">
+                <div className="code" id="css-code">
                     <p>{font ? `font-family: '${font}', ${category};` : null}</p>
                     <p>{size ? `font-size: ${size};` : null}</p>
                     <p>{weight ? `font-weight: ${weight};` : null}</p>

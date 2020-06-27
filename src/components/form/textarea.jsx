@@ -79,7 +79,7 @@ export default class Textarea extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         let { font, weight } = this.state;
 
-        if (prevState.font !== font) {
+        if (prevState.font !== font || prevState.weight !== weight) {
             const link = document.querySelector(".google-fonts-link");
             let href = link.href;
             if (font.split(" ").length > 1) font = font.split(" ").join("+");

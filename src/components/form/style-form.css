@@ -50,6 +50,10 @@
     box-sizing: border-box;
 }
 
+.form-header li:hover {
+    text-decoration: underline;
+}
+
 .form-header li:first-child {
     width: 140px;
     text-align: center;
