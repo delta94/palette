@@ -1,17 +1,12 @@
 .search {
-    width: 100%;
     text-align: center;
-    margin: 2em auto 3em auto;
-    position: sticky;
-    top: 10px;
-    z-index: 100;
+    margin: auto;
 }
 
 .search input {
-    padding: 8px 12px;
+    padding: 6px 10px;
     padding-right: 8px;
-    width: 25%;
-    min-width: 300px;
+    width: 300px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     -webkit-font-smoothing: antialiased;

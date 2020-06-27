@@ -11,7 +11,7 @@ export default class Textarea extends React.Component {
         if (props.type === "create") {
             text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a diam eleifend mauris porta posuere a eu lectus. Suspendisse pellentesque diam tempor enim rutrum pretium.";
             font = "Roboto";
-            size = "16px";
+            size = "15px";
             weight = "400";
             style = "normal";
             decoration = "none";

@@ -11,6 +11,10 @@ button {
     font-weight: 600;
 }
 
+button:hover {
+    text-decoration: underline;
+}
+
 input, textarea, select {
     outline: none;
     border: 0;
@@ -22,8 +26,9 @@ textarea {
 
 .main-container {
     margin: auto;
-    width: 80%;
-    max-width: 850px;
+    padding-top: 6em;
+    width: 85%;
+    max-width: 750px;
 }
 
 .main-container h1 {

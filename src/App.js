@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import './reset.css';
 import { TopNav } from './components/header/top-nav';
-import { SearchBar } from './components/header/search-bar';
 import StyleList from './components/style-list/style-list';
 import ColorList from './components/color-list/color-list';
 import StyleForm from './components/form/style-form';
@@ -104,8 +103,7 @@ class App extends React.Component {
 
     return (
       <>
-        <TopNav />
-        <SearchBar handleChange={this.handleChange} />
+        <TopNav handleChange={this.handleChange} />
         <div className="main-container">
           <div className="colors">
             <h1>Colors</h1>

@@ -1,13 +1,15 @@
 import React from 'react';
 import './top-nav.css';
+import { SearchBar } from './search-bar';
 
-export const TopNav = () => (
+export const TopNav = props => (
     <nav className="top-nav-container">
         <nav className="top-nav">
             <div className="logo rainbow">
                 <i className="fas fa-palette"></i>
                 Palette
             </div>
+            <SearchBar handleChange={props.handleChange} />
             <div className="icons">
                 <a
                     href="https://juneseong.com"

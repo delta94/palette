@@ -1,10 +1,12 @@
 .top-nav-container {
     width: 100%;
     box-sizing: border-box;
-    padding: 15px;
+    padding: 6px 15px;
     border-bottom: 1px solid #e6e6e6;
     box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.01);
     background-color: #fafafa;
+    position: fixed;
+    z-index: 1;
 }
 
 .top-nav {
@@ -18,17 +20,24 @@
     color: #363636;
     font-family: 'Merriweather', serif;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 17px;
+    line-height: 36px;
+    width: 130px;
 }
 
 .logo i {
     margin-right: 4px;
 }
 
+.icons {
+    width: 130px;
+}
+
 .icons i {
     color: #363636;
     margin-left: 15px;
     font-size: 18px;
+    line-height: 36px;
 }
 
 .icons i:hover {
@@ -96,4 +105,10 @@
     80% {color: #0000ff;}
     90% {color: #8000ff;}
     100% {color: #ff0080;}
+}
+
+@media only screen and (max-width: 700px) {
+  .icons {
+    display: none;
+  }
 }
