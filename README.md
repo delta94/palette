@@ -10,14 +10,14 @@ Palette is built with `React`, `JavaScript`, `HTML5` and `CSS3`. `localStorage` 
 ## Features
 ![palette-giphy](https://user-images.githubusercontent.com/57915629/85969456-af44aa80-b995-11ea-934c-ee3083709a59.gif)
 ### 1. Customize Font Styles
-Users can easily customize and generate font styles using `font`, `font-size`, `font-weight`, `font-style`, `text-decoration` and `color`. `Google Fonts API` and `React Lifecycle` methods were employed to provide various font options to users.
+Users can easily generate custom font styles using `font`, `font-size`, `font-weight`, `font-style`, `text-decoration` and `color`. `Google Fonts API` and `React Lifecycle` methods were employed to provide various font options to users.
 ### 2. Store Colors and Font Styles
 Users can save colors and customized font styles on web. `localStorage` was utilized to store data.
 ### 3. Generate and Copy Code
-The app generates `HTML` and `CSS` code based on the style customized by users. Users can copy the code to clipboard simply by clicking on `Copy` button.
+Users can generate `HTML` (Google Fonts API) and `CSS` code of their custom font styles. They can copy the code to clipboard by simply clicking on `Copy` button.
 ### 4. Search
-Users can filter data using a search bar.
+Users can filter data of their custom color and font styles using a search bar.
 ### 5. Responsive
-Users can use the app on any device.
+Users can use the app on any device. `CSS3 media queries` were utilized to adjust element styling based on screen size.
 <br><br>
 ![palette-responsive-giphy](https://user-images.githubusercontent.com/57915629/85970327-2f6c0f80-b998-11ea-92a6-69608ad83944.gif)
