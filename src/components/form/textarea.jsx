@@ -77,7 +77,7 @@ export default class Textarea extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        let { font, weight } = this.state;
+        let { font, weight, fonts } = this.state;
 
         if (prevState.font !== font || prevState.weight !== weight) {
             const link = document.querySelector(".google-fonts-link");
@@ -86,6 +86,24 @@ export default class Textarea extends React.Component {
             const splitIdx = href.indexOf("&display=swap");
             href = `${href.slice(0, splitIdx)}&family=${font}:wght@${weight}${href.slice(splitIdx)}`;
             link.href = href;
+
+            if (prevState.weight === weight) {
+                for (let i = 0; i < fonts.length; i++) {
+                    const font = fonts[i];
+                    let { family, variants } = font;
+
+                    if (family === this.state.font) {
+                        const weights = variants.filter(weight => weight.length < 4 || weight === "regular");
+                        const regularIdx = weights.indexOf("regular");
+                        if (regularIdx !== null) weights[regularIdx] = "400";
+
+                        const { category } = font;
+                        this.setState({ category, weights });
+
+                        break;
+                    }
+                }
+            }
         }
     }
 
@@ -178,7 +196,7 @@ export default class Textarea extends React.Component {
                                         onChange={e => this.setState({ weight: e.target.value })}>
                                         {
                                             weights
-                                                ? this.state.weights.map((weight, i) => (
+                                                ? weights.map((weight, i) => (
                                                     <option key={`weight-option-${i}`}>
                                                         {weight}
                                                     </option>
