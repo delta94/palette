@@ -7,18 +7,29 @@ import ColorList from './components/color-list/color-list';
 import StyleForm from './components/form/style-form';
 
 class App extends React.Component {
-  state = {
-    styles: [],
-    colors: [],
-    searchText: "",
-    creating: false,
-  };
+  constructor(props) {
+    super(props);
 
-  componentDidMount() {
-    this.setState({ 
-      styles: JSON.parse(localStorage.getItem("styles")) || [],
-      colors: JSON.parse(localStorage.getItem("colors")) || []
-    });
+    const styles = JSON.parse(localStorage.getItem("styles")) || [];
+    let colors = JSON.parse(localStorage.getItem("colors")) || null;
+
+    if (!colors) {
+      const defaultColors = 
+      [{ "id": 1, "value": "d0f4de", "name": "Granny Apple" },
+        { "id": 2, "value": "a9def9", "name": "Sail" },
+        { "id": 3, "value": "e4c1f9", "name": "Perfume" },
+        { "id": 4, "value": "ff99c8", "name": "Carnation Pink" }];
+
+      colors = defaultColors;
+      localStorage.setItem("colors", JSON.stringify(defaultColors));
+    }
+
+    this.state = {
+      styles,
+      colors,
+      searchText: "",
+      creating: false,
+    };
   }
 
   componentDidUpdate() {
@@ -37,22 +48,18 @@ class App extends React.Component {
     this.setState({ searchText: e.target.value });
   }
 
-  handleSubmit = (type, input, styleId=null) => {
+  handleSubmit = (type, input, styleId=null, colorName=null) => {
     const key = this.state[type];
     let value;
     let id = styleId !== null ? styleId : key.length;
 
-    if (styleId === null) {
-      for (let i = 0; i < key.length; i++) {
-        if (key[i].id !== i) id = i;
-      }
-    }
+    if (styleId === null && type === "colors") id = key[key.length - 1].id + 1;
 
     if (type === "styles") {
       const { text, font, size, weight, style, decoration, color } = input;
       value = { id, text, font, size, weight, style, decoration, color };
     } else {
-      value = { id, value: input };
+      value = { id, value: input, name: colorName };
     }
 
     if (styleId !== null) {
@@ -99,7 +106,9 @@ class App extends React.Component {
     });
 
     colors.forEach((color, id) => {
-      if (color && color.value.toLowerCase().includes(this.state.searchText.toLowerCase())) {
+      if (color 
+        && (color.value.toLowerCase().includes(this.state.searchText.toLowerCase())
+        || color.name.toLowerCase().includes(this.state.searchText.toLowerCase()))) {
         filteredColors.push({ id, color });
       }
     });
@@ -109,7 +118,7 @@ class App extends React.Component {
         <TopNav handleChange={this.handleChange} />
         <div className="main-container">
           <div className="colors">
-            <h1>Colors</h1>
+            <h1>colors</h1>
             <ColorList 
               colors={filteredColors}
               handleSubmit={this.handleSubmit} 
@@ -117,7 +126,7 @@ class App extends React.Component {
             />
           </div>
           <div className="styles">
-            <h1>Fonts</h1>
+            <h1>fonts</h1>
             {
               creating
                 ? <StyleForm

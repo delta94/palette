@@ -50,3 +50,12 @@
     font-size: 12px;
     font-weight: 700;
 }
+
+.color-name {
+    color: #999;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding-top: 3px;
+}

@@ -27,25 +27,31 @@ export default class Color extends React.Component {
         const { color } = this.props;
 
         return (
-            <div 
-                className="colored"
-                style={{ backgroundColor: `#${color.value}` }}
-                onMouseEnter={() => this.setState({ show: true })}
-                onMouseLeave={() => this.setState({ show: false, copy: "Copy" })}>
-                {
-                    show 
-                    ? <div 
-                        className="colored-dark"
-                        onClick={this.copy}>
-                        <i 
-                            className="fas fa-times"
-                            onClick={e => this.handleDelete(e)}>
-                        </i>
-                        <div className="color-copy">
-                            <p>{copy}</p>
-                        </div>
-                    </div> : null
-                }
+            <div>
+                <div 
+                    className="colored"
+                    style={{ backgroundColor: `#${color.value}` }}
+                    onMouseEnter={() => this.setState({ show: true })}
+                    onMouseLeave={() => this.setState({ show: false, copy: "Copy" })}>
+                    {
+                        show 
+                        ? <div 
+                            className="colored-dark"
+                            onClick={this.copy}>
+                            <i 
+                                className="fas fa-times"
+                                onClick={e => this.handleDelete(e)}>
+                            </i>
+                            <div className="color-copy">
+                                <p>{copy}</p>
+                            </div>
+                        </div> 
+                        : null
+                    }
+                </div>
+                <div>
+                    <p className="color-name">{color.name}</p>
+                </div>
             </div>
         )
     }

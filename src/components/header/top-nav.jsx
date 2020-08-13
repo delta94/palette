@@ -6,8 +6,8 @@ export const TopNav = props => (
     <nav className="top-nav-container">
         <nav className="top-nav">
             <div className="logo rainbow">
-                <i className="fas fa-palette"></i>
-                Palette
+                <i className="fas fa-paint-brush"></i>
+                palette
             </div>
             <SearchBar handleChange={props.handleChange} />
             <div className="icons">

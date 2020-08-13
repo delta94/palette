@@ -22,15 +22,21 @@ export default class ColorForm extends React.Component {
         const { handleSubmit, handleClose } = this.props;
         const { color } = this.state;
 
-        if (color.length === 3 || color.length === 6) {
-            handleSubmit("colors", color);
-            handleClose();
-        } else {
-            this.setState({ 
-                message: "Invalid color",
-                messageColor: "#ff0000" 
+        fetch(`https://www.thecolorapi.com/id?hex=${color}`)
+            .then(response => response.json())
+            .then(data => {
+                const name = data.name.value;
+            
+                if (data.rgb.fraction.r !== null) {
+                    handleSubmit("colors", data.hex.clean.toLowerCase(), null, name);
+                    handleClose();
+                } else {
+                    this.setState({
+                        message: "Invalid color",
+                        messageColor: "#ff0000"
+                    });
+                }
             });
-        }
     }
 
     render() {

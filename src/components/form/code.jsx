@@ -22,12 +22,12 @@ export const Code = ({ ...props }) => {
                     <CopyButton type="css" /> and paste the code into your CSS file.
                 </div>
                 <div className="code" id="css-code">
-                    <p>{font ? `font-family: '${font}', ${category};` : null}</p>
-                    <p>{size ? `font-size: ${size};` : null}</p>
-                    <p>{weight ? `font-weight: ${weight};` : null}</p>
-                    <p>{style !== "normal" ? `font-style: ${style};` : null}</p>
-                    <p>{decoration !== "none" ? `text-decoration: ${decoration};` : null}</p>
-                    <p>{color ? `color: #${color};` : null}</p>
+                    {font ? <>{`font-family: ${font}, ${category};`}<br /></> : null}
+                    {size ? <>{`font-size: ${size};`}<br /></> : null}
+                    {weight ? <>{`font-weight: ${weight};`}<br /></> : null}
+                    {style !== "normal" ? <>{`font-style: ${style};`}<br /></> : null}
+                    {decoration !== "none" ? <>{`text-decoration: ${decoration};`}<br /></> : null}
+                    {color ? <>{`color: #${color};`}<br /></> : null}
                 </div>
             </div>
         </div>

@@ -1,7 +1,15 @@
 import React from 'react';
 
 export default class CopyButton extends React.Component {
-    state = { text: "Copy" };
+    constructor(props) {
+        super(props);
+
+        this.state = { text: "Copy" };
+    }
+
+    componentWillUnmount() {
+        this.setState({ text: "Copy" });
+    }
 
     handleCopy = () => {
         this.setState({ text: "Copied!" });
@@ -10,20 +18,13 @@ export default class CopyButton extends React.Component {
             ? document.querySelector("#html-code").innerText
             : document.querySelector("#css-code").innerText;
 
-        const input = document.createElement("input");
-        input.setAttribute("value", code);
+        const input = document.createElement("textarea");
+        input.value = code;
         document.body.appendChild(input);
         input.select();
-        const result = document.execCommand("copy");
+        document.execCommand("copy");
         document.body.removeChild(input);
-
-        setTimeout(this.returnText, 2500);
-        return result;
-    }
-
-    returnText = () => {
-        this.setState({ text: "Copy" });
-    }    
+    } 
     
     render() {
         const { text } = this.state;

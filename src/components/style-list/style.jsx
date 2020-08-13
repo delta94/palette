@@ -39,7 +39,8 @@ export default class Style extends React.Component {
                                     fontWeight: style.weight,
                                     fontStyle: style.style,
                                     textDecoration: style.decoration,
-                                    color: "#" + style.color
+                                    color: "#" + style.color,
+                                    whiteSpace: "pre-line"
                                 }}>
                                 {style.text}
                             </span>
