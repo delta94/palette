@@ -107,6 +107,7 @@ export default class Textarea extends React.Component {
         }
 
         if (!this.props.code) {
+            this.textarea.current.style.height = "0";
             const scrollHeight = this.textarea.current.scrollHeight;
             this.textarea.current.style.height = `${scrollHeight}px`;
         }
