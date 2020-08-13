@@ -27,7 +27,7 @@ export const Code = ({ ...props }) => {
                     {weight ? <>{`font-weight: ${weight};`}<br /></> : null}
                     {style !== "normal" ? <>{`font-style: ${style};`}<br /></> : null}
                     {decoration !== "none" ? <>{`text-decoration: ${decoration};`}<br /></> : null}
-                    {color ? <>{`color: #${color};`}<br /></> : null}
+                    {color ? <>{`color: #${color};`}</> : null}
                 </div>
             </div>
         </div>

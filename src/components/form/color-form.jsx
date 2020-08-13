@@ -26,9 +26,10 @@ export default class ColorForm extends React.Component {
             .then(response => response.json())
             .then(data => {
                 const name = data.name.value;
-            
-                if (data.rgb.fraction.r !== null) {
-                    handleSubmit("colors", data.hex.clean.toLowerCase(), null, name);
+                const color = data.hex.clean.toLowerCase();
+
+                if (data.rgb.fraction.r !== null && data.rgb.fraction.g !== null && data.rgb.fraction.b !== null) {
+                    handleSubmit("colors", color, null, name);
                     handleClose();
                 } else {
                     this.setState({

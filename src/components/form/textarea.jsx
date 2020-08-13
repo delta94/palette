@@ -105,10 +105,16 @@ export default class Textarea extends React.Component {
                 }
             }
         }
+
+        if (!this.props.code) {
+            const scrollHeight = this.textarea.current.scrollHeight;
+            this.textarea.current.style.height = `${scrollHeight}px`;
+        }
     }
 
     handleChange = (e, field) => {
-        this.setState({ [field]: e.target.value });
+        const { value } = e.target;
+        this.setState({ [field]: value });
     }
 
     handleSubmit = (e, input) => {
