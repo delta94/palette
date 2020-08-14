@@ -3,12 +3,19 @@
     padding: 5px 0 10px 0;
     position: relative;
     margin-bottom: 2em;
+    opacity: 0;
+}
+
+.form-container.active {
+    opacity: 1;
+    transform: translate3d(0, 5px, 0);
+    transition: all 250ms ease-in-out;
 }
 
 .form-container textarea {
     width: 100%;
     box-sizing: border-box;
-    padding: 15px;
+    padding: 20px 15px 5px 15px;
     resize: none;
     overflow: hidden;
     line-height: 1.5;
@@ -52,11 +59,11 @@
 }
 
 .form-header li:hover {
-    text-decoration: underline;
+    color: #0081ff;
 }
 
 .form-header li:first-child {
-    width: 140px;
+    width: 100px;
     text-align: center;
 }
 
@@ -76,6 +83,7 @@
 
 .form-header li.active {
     background-color: #fff;
+    color: #0081ff;
     border-bottom: 0;
 }
 

@@ -1,0 +1,25 @@
+.copy-button-background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 350ms ease-in-out;
+}
+
+.copy-button-background:hover {
+    opacity: 1;
+    transition: opacity 350ms ease-in-out;
+}
+
+.copy-button {
+    position: absolute;
+    left: calc(50% - calc(40px / 2));
+    width: 40px;
+    top: calc(50% - calc(14px / 2));
+    color: #fff;
+    font-weight: 600;
+}

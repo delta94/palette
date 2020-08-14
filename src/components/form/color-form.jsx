@@ -8,7 +8,8 @@ export default class ColorForm extends React.Component {
         this.state = { 
             color: "", 
             message: "Press enter to save.",
-            messageColor: ""
+            messageColor: "",
+            formClass: ""
         };
 
         this.textarea = React.createRef();
@@ -16,6 +17,7 @@ export default class ColorForm extends React.Component {
 
     componentDidMount() {
         this.textarea.current.focus();
+        this.setState({ formClass: "active" });
     }
 
     handleSubmit() {
@@ -42,7 +44,7 @@ export default class ColorForm extends React.Component {
 
     render() {
         const { handleClose } = this.props;
-        const { color, message, messageColor } = this.state;
+        const { color, message, messageColor, formClass } = this.state;
 
         return (
             <div className="add-color">
@@ -50,7 +52,7 @@ export default class ColorForm extends React.Component {
                     className="colored"
                     style={{ backgroundColor: `#${color}` }}>
                 </div>
-                <div id="color-form" className="add-color-form">
+                <div id="color-form" className={`add-color-form ${formClass}`}>
                     <div className="color-code">
                         #
                         <input

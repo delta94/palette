@@ -1,8 +1,7 @@
 .style {
     background-color: #fff;
     margin-bottom: 2em;
-    padding: 20px 15px;
-    padding-top: 40px;
+    padding: 30px 15px 20px 15px;
     position: relative;
     line-height: 1.5;
 }
@@ -10,7 +9,7 @@
 .edit-delete-style {
     position: absolute;
     right: 15px;
-    top: 12px;
+    bottom: 12px;
 }
 
 .edit-delete-style button {
